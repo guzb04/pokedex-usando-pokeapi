@@ -1,0 +1,53 @@
+#searchbar{
+    display: grid;
+    margin: auto;
+    place-items: center;
+}
+#searchinput{
+    width: 500px;
+    margin-top: 100px;
+    padding: 5px;
+}
+.titulo{
+    display: grid;
+    margin: auto;
+    margin-top: 50px;
+    place-items: center;
+}
+.card{
+    width: 300px;
+    height: 600px;
+}
+
+.card_container{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-title{
+    font-family: Chalkduster, fantasy;
+    place-self: center;
+}
+
+.subtitulo{
+    font-size: larger;
+    font-family: Gill Sans, sans-serif;
+    font-weight: bold;
+    color: rgb(1, 1, 61);
+}
+
+.pokeinfo{
+    font-family: Gill Sans, sans-serif;
+    font-weight: bold;
+}
+
+.card{
+    background-image: linear-gradient(to bottom, rgba(255, 166, 0, 0.418), rgba(255, 255, 0, 0.295));
+    overflow-y: auto;
+    margin: 10px;
+}
+.deletebutton{
+    background-color: red;
+}

@@ -1,5 +1,12 @@
 
 document.addEventListener("DOMContentLoaded", function(){
+    let listavacia = []
+    
+    if(JSON.parse(localStorage.getItem("pokeids")) === null){
+        let listastringify = JSON.stringify(listavacia)
+        localStorage.setItem("pokeids", listastringify)
+    }
+
     let searchinput = document.getElementById("searchinput")
     let searchbutton = document.getElementById("searchbutton")
 

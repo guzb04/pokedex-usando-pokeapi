@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     searchbutton.addEventListener("click", ()=>{
         if (searchinput.value !== ""){
-            sessionStorage.setItem("searchedpokemon", searchinput.value)
+            sessionStorage.setItem("searchedpokemon", searchinput.value.toLowerCase())
             window.location.href = "pokemon.html"
         }else{
             alert("por favor escriba el nombre o ID de un pokémon")
@@ -40,9 +40,11 @@ async function fetchapi(url, localcontainer){
         
 
         //bloque de img
-        let pokeimageele = document.createElement("img");
+        let pokeimageele = new Image();
         pokeimageele.classList.add("card-img-top")
-        pokeimageele.src = pokeimage;
+        pokeimageele.classList.add("pokeimage")
+        pokeimageele.src = pokeimage + '?' + new Date().getTime();
+        pokeimageele.setAttribute('crossOrigin', '');
 
         pokeimageele.addEventListener("mouseover", ()=>{
             pokeimageele.src = pokeimage_back;
@@ -101,6 +103,19 @@ async function fetchapi(url, localcontainer){
             pokeabilitiesele.appendChild(newability)
         });
         
+        
+
+
+        
+
+
+        let scrollable = document.createElement("div");
+        scrollable.classList.add("scrollable");
+
+        scrollable.appendChild(pokenameele);
+        scrollable.appendChild(poketypesele);
+        scrollable.appendChild(pokeabilitiesele);
+    
 
 
 
@@ -113,16 +128,37 @@ async function fetchapi(url, localcontainer){
         card.classList.add("card");
 
         card.appendChild(pokeimageele);
-        card.appendChild(pokenameele);
-        card.appendChild(poketypesele);
-        card.appendChild(pokeabilitiesele);
+        card.appendChild(scrollable);
+        
         
 
         localcontainer.appendChild(card);
+
+        console.log(pokeimageele.src)
+        
+
+        pokeimageele.addEventListener("load", () => {
+            colors = colorPallete(pokeimageele)
+            
+            let colors1 = colors[0];
+            let colors2 = colors[1];
+
+            const gradient = `linear-gradient(to bottom, rgba(${colors1[0]}, ${colors1[1]}, ${colors1[2]}, 0.7), rgba(${colors2[0]}, ${colors2[1]}, ${colors2[2]}, 0.3))`
+            card.style.background = gradient;
+
+            
+            
+        })
+            
+        
+        
+
+
+        
         
         if (window.location.href.endsWith("pokemon.html")){
             agregarAPokedexbutton(card, pokeid)
-        }else if(window.location.href.endsWith('index.html')){
+        }else if(window.location.href.endsWith('index.html' || "/")){
             botonBorrar(card, pokeid)
         }
     })
@@ -146,3 +182,12 @@ function agregarIdsAlocalStorage(id) {
 }
 
 
+function colorPallete(img){
+    const colorThief = new ColorThief();
+
+  
+  const dominantColor = colorThief.getPalette(img, 2);
+  return dominantColor
+  
+
+    }

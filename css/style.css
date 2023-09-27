@@ -44,10 +44,14 @@
 }
 
 .card{
-    background-image: linear-gradient(to bottom, rgba(255, 166, 0, 0.418), rgba(255, 255, 0, 0.295));
-    overflow-y: auto;
     margin: 10px;
 }
 .deletebutton{
-    background-color: red;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.scrollable{
+    overflow-y: auto;
 }
